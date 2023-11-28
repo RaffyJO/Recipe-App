@@ -3,15 +3,13 @@ import 'package:recipe_app/detailPage.dart';
 import 'package:recipe_app/model/masakan.dart';
 import 'package:recipe_app/searchPage.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class HomePage extends StatelessWidget {
+  HomePage({Key? key}) : super(key: key) {
+    jumMasakan();
+  }
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
   int jumMakanan = 0;
+
   int jumMinuman = 0;
 
   void jumMasakan() {
@@ -23,10 +21,6 @@ class _HomePageState extends State<HomePage> {
         jumMinuman++;
       }
     }
-  }
-
-  _HomePageState() {
-    jumMasakan();
   }
 
   @override
@@ -81,7 +75,7 @@ class _HomePageState extends State<HomePage> {
               InkWell(
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return const SearchPage();
+                    return SearchPage();
                   }));
                 },
                 child: Container(

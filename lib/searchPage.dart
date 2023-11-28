@@ -2,14 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:recipe_app/detailPage.dart';
 import 'package:recipe_app/model/masakan.dart';
 
-class SearchPage extends StatefulWidget {
-  const SearchPage({Key? key}) : super(key: key);
+class SearchPage extends StatelessWidget {
+  SearchPage({Key? key}) : super(key: key);
 
-  @override
-  State<SearchPage> createState() => _SearchPageState();
-}
-
-class _SearchPageState extends State<SearchPage> {
   String searchText = '';
 
   @override
@@ -97,12 +92,9 @@ class _SearchPageMobileState extends State<SearchPageMobile> {
                                   SizedBox(
                                     height: 150,
                                     width: 120,
-                                    child: Expanded(
-                                      flex: 1,
-                                      child: Image.network(
-                                        masakan.imageUrl,
-                                        fit: BoxFit.cover,
-                                      ),
+                                    child: Image.network(
+                                      masakan.imageUrl,
+                                      fit: BoxFit.cover,
                                     ),
                                   ),
                                   const SizedBox(

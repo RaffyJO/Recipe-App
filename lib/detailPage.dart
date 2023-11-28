@@ -25,16 +25,11 @@ class DetailPage extends StatelessWidget {
   }
 }
 
-class DetailPageMobile extends StatefulWidget {
+class DetailPageMobile extends StatelessWidget {
   final Masakan masakan;
 
   const DetailPageMobile({super.key, required this.masakan});
 
-  @override
-  State<DetailPageMobile> createState() => _DetailPageMobileState();
-}
-
-class _DetailPageMobileState extends State<DetailPageMobile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +43,7 @@ class _DetailPageMobileState extends State<DetailPageMobile> {
                   height: 270,
                   width: MediaQuery.of(context).size.width,
                   child: Image.network(
-                    widget.masakan.imageUrl,
+                    masakan.imageUrl,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -65,8 +60,7 @@ class _DetailPageMobileState extends State<DetailPageMobile> {
                         onPressed: () {
                           Navigator.pushReplacement(
                             context,
-                            MaterialPageRoute(
-                                builder: (context) => const HomePage()),
+                            MaterialPageRoute(builder: (context) => HomePage()),
                           );
                         },
                       ),
@@ -84,12 +78,12 @@ class _DetailPageMobileState extends State<DetailPageMobile> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        widget.masakan.name,
+                        masakan.name,
                         style: const TextStyle(
                             fontSize: 20, fontWeight: FontWeight.w500),
                       ),
                       FavoriteButton(
-                        masakan: widget.masakan,
+                        masakan: masakan,
                       )
                     ],
                   ),
@@ -106,7 +100,7 @@ class _DetailPageMobileState extends State<DetailPageMobile> {
                             width: 2,
                           ),
                           Text(
-                            '${widget.masakan.time} min',
+                            '${masakan.time} min',
                             style: const TextStyle(fontSize: 15),
                           ),
                         ],
@@ -125,7 +119,7 @@ class _DetailPageMobileState extends State<DetailPageMobile> {
                             width: 2,
                           ),
                           Text(
-                            '${widget.masakan.calories} cal',
+                            '${masakan.calories} cal',
                             style: const TextStyle(fontSize: 15),
                           ),
                         ],
@@ -151,7 +145,7 @@ class _DetailPageMobileState extends State<DetailPageMobile> {
                       height: 10,
                     ),
                     Text(
-                      widget.masakan.description,
+                      masakan.description,
                       style: const TextStyle(fontSize: 15),
                     ),
                   ],
@@ -171,13 +165,13 @@ class _DetailPageMobileState extends State<DetailPageMobile> {
                     height: 10,
                   ),
                   ListView.builder(
-                      itemCount: widget.masakan.ingredients.length,
+                      itemCount: masakan.ingredients.length,
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) {
                         int count = index + 1;
                         return Text(
-                          "$count. ${widget.masakan.ingredients[index]}",
+                          "$count. ${masakan.ingredients[index]}",
                           style: const TextStyle(fontSize: 15),
                         );
                       })
@@ -197,13 +191,13 @@ class _DetailPageMobileState extends State<DetailPageMobile> {
                     height: 10,
                   ),
                   ListView.builder(
-                      itemCount: widget.masakan.step.length,
+                      itemCount: masakan.step.length,
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) {
                         int count = index + 1;
                         return Text(
-                          "$count. ${widget.masakan.step[index]}",
+                          "$count. ${masakan.step[index]}",
                           style: const TextStyle(fontSize: 15),
                         );
                       })
@@ -220,17 +214,10 @@ class _DetailPageMobileState extends State<DetailPageMobile> {
   }
 }
 
-class DetailWebPage extends StatefulWidget {
+class DetailWebPage extends StatelessWidget {
   final Masakan masakan;
 
-  const DetailWebPage({Key? key, required this.masakan}) : super(key: key);
-
-  @override
-  _DetailWebPageState createState() => _DetailWebPageState();
-}
-
-class _DetailWebPageState extends State<DetailWebPage> {
-  final _scrollController = ScrollController();
+  const DetailWebPage({super.key, required this.masakan});
 
   @override
   Widget build(BuildContext context) {
@@ -266,7 +253,7 @@ class _DetailWebPageState extends State<DetailWebPage> {
                                 Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => const HomePage()),
+                                      builder: (context) => HomePage()),
                                 );
                               },
                             ),
@@ -293,7 +280,7 @@ class _DetailWebPageState extends State<DetailWebPage> {
                           children: [
                             ClipRRect(
                               borderRadius: BorderRadius.circular(10),
-                              child: Image.network(widget.masakan.imageUrl),
+                              child: Image.network(masakan.imageUrl),
                             ),
                             const SizedBox(height: 16),
                           ],
@@ -308,7 +295,7 @@ class _DetailWebPageState extends State<DetailWebPage> {
                               mainAxisSize: MainAxisSize.max,
                               children: <Widget>[
                                 Text(
-                                  widget.masakan.name,
+                                  masakan.name,
                                   textAlign: TextAlign.center,
                                   style: const TextStyle(
                                     fontSize: 30.0,
@@ -323,12 +310,12 @@ class _DetailWebPageState extends State<DetailWebPage> {
                                         const Icon(Icons.timer_outlined),
                                         const SizedBox(width: 8.0),
                                         Text(
-                                          "${widget.masakan.time} min",
+                                          "${masakan.time} min",
                                         ),
                                       ],
                                     ),
                                     FavoriteButton(
-                                      masakan: widget.masakan,
+                                      masakan: masakan,
                                     ),
                                   ],
                                 ),
@@ -339,7 +326,7 @@ class _DetailWebPageState extends State<DetailWebPage> {
                                     ),
                                     const SizedBox(width: 8.0),
                                     Text(
-                                      "${widget.masakan.calories} cal",
+                                      "${masakan.calories} cal",
                                     ),
                                   ],
                                 ),
@@ -357,7 +344,7 @@ class _DetailWebPageState extends State<DetailWebPage> {
                                   padding: const EdgeInsets.only(
                                       bottom: 16.0, top: 10),
                                   child: Text(
-                                    widget.masakan.description,
+                                    masakan.description,
                                     textAlign: TextAlign.justify,
                                     style: const TextStyle(
                                       fontSize: 15.0,
@@ -377,15 +364,14 @@ class _DetailWebPageState extends State<DetailWebPage> {
                                     padding: const EdgeInsets.only(
                                         bottom: 16.0, top: 10),
                                     child: ListView.builder(
-                                        itemCount:
-                                            widget.masakan.ingredients.length,
+                                        itemCount: masakan.ingredients.length,
                                         shrinkWrap: true,
                                         physics:
                                             const NeverScrollableScrollPhysics(),
                                         itemBuilder: (context, index) {
                                           int count = index + 1;
                                           return Text(
-                                            "$count. ${widget.masakan.ingredients[index]}",
+                                            "$count. ${masakan.ingredients[index]}",
                                             style:
                                                 const TextStyle(fontSize: 15),
                                           );
@@ -403,14 +389,14 @@ class _DetailWebPageState extends State<DetailWebPage> {
                                     padding: const EdgeInsets.only(
                                         bottom: 16.0, top: 10),
                                     child: ListView.builder(
-                                        itemCount: widget.masakan.step.length,
+                                        itemCount: masakan.step.length,
                                         shrinkWrap: true,
                                         physics:
                                             const NeverScrollableScrollPhysics(),
                                         itemBuilder: (context, index) {
                                           int count = index + 1;
                                           return Text(
-                                            "$count. ${widget.masakan.step[index]}",
+                                            "$count. ${masakan.step[index]}",
                                             style:
                                                 const TextStyle(fontSize: 15),
                                           );
@@ -430,13 +416,225 @@ class _DetailWebPageState extends State<DetailWebPage> {
       ),
     );
   }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
-  }
 }
+
+// class DetailWebPage extends StatefulWidget {
+//   final Masakan masakan;
+
+//   const DetailWebPage({Key? key, required this.masakan}) : super(key: key);
+
+//   @override
+//   _DetailWebPageState createState() => _DetailWebPageState();
+// }
+
+// class _DetailWebPageState extends State<DetailWebPage> {
+//   final _scrollController = ScrollController();
+
+//   @override
+//   Widget build(BuildContext context) {
+//     final screenWidth = MediaQuery.of(context).size.width;
+
+//     return Scaffold(
+//       body: SingleChildScrollView(
+//         child: Padding(
+//           padding: const EdgeInsets.symmetric(
+//             vertical: 16,
+//             horizontal: 64,
+//           ),
+//           child: Center(
+//             child: SizedBox(
+//               width: screenWidth <= 1200 ? 800 : 1200,
+//               child: Column(
+//                 crossAxisAlignment: CrossAxisAlignment.start,
+//                 children: <Widget>[
+//                   Row(
+//                     crossAxisAlignment: CrossAxisAlignment.start,
+//                     children: [
+//                       SafeArea(
+//                         child: Padding(
+//                           padding: const EdgeInsets.all(8.0),
+//                           child: CircleAvatar(
+//                             backgroundColor: Colors.white,
+//                             child: IconButton(
+//                               icon: Icon(
+//                                 Icons.arrow_back,
+//                                 color: Colors.grey[800],
+//                               ),
+//                               onPressed: () {
+//                                 Navigator.pushReplacement(
+//                                   context,
+//                                   MaterialPageRoute(
+//                                       builder: (context) => const HomePage()),
+//                                 );
+//                               },
+//                             ),
+//                           ),
+//                         ),
+//                       ),
+//                       const Padding(
+//                         padding: EdgeInsets.all(8.0),
+//                         child: Text(
+//                           'Resep Masakan',
+//                           style: TextStyle(
+//                             fontSize: 32,
+//                           ),
+//                         ),
+//                       )
+//                     ],
+//                   ),
+//                   const SizedBox(height: 32),
+//                   Row(
+//                     crossAxisAlignment: CrossAxisAlignment.start,
+//                     children: [
+//                       Expanded(
+//                         child: Column(
+//                           children: [
+//                             ClipRRect(
+//                               borderRadius: BorderRadius.circular(10),
+//                               child: Image.network(widget.masakan.imageUrl),
+//                             ),
+//                             const SizedBox(height: 16),
+//                           ],
+//                         ),
+//                       ),
+//                       const SizedBox(width: 32),
+//                       Expanded(
+//                         child: Card(
+//                           child: Container(
+//                             padding: const EdgeInsets.all(16),
+//                             child: Column(
+//                               mainAxisSize: MainAxisSize.max,
+//                               children: <Widget>[
+//                                 Text(
+//                                   widget.masakan.name,
+//                                   textAlign: TextAlign.center,
+//                                   style: const TextStyle(
+//                                     fontSize: 30.0,
+//                                   ),
+//                                 ),
+//                                 Row(
+//                                   mainAxisAlignment:
+//                                       MainAxisAlignment.spaceBetween,
+//                                   children: [
+//                                     Row(
+//                                       children: <Widget>[
+//                                         const Icon(Icons.timer_outlined),
+//                                         const SizedBox(width: 8.0),
+//                                         Text(
+//                                           "${widget.masakan.time} min",
+//                                         ),
+//                                       ],
+//                                     ),
+//                                     FavoriteButton(
+//                                       masakan: widget.masakan,
+//                                     ),
+//                                   ],
+//                                 ),
+//                                 Row(
+//                                   children: <Widget>[
+//                                     const Icon(
+//                                       Icons.local_fire_department_outlined,
+//                                     ),
+//                                     const SizedBox(width: 8.0),
+//                                     Text(
+//                                       "${widget.masakan.calories} cal",
+//                                     ),
+//                                   ],
+//                                 ),
+//                                 const SizedBox(height: 16.0),
+//                                 const Align(
+//                                   alignment: Alignment.topLeft,
+//                                   child: Text(
+//                                     "Deskripsi",
+//                                     style: TextStyle(
+//                                         fontSize: 20,
+//                                         fontWeight: FontWeight.w500),
+//                                   ),
+//                                 ),
+//                                 Container(
+//                                   padding: const EdgeInsets.only(
+//                                       bottom: 16.0, top: 10),
+//                                   child: Text(
+//                                     widget.masakan.description,
+//                                     textAlign: TextAlign.justify,
+//                                     style: const TextStyle(
+//                                       fontSize: 15.0,
+//                                     ),
+//                                   ),
+//                                 ),
+//                                 const Align(
+//                                   alignment: Alignment.topLeft,
+//                                   child: Text(
+//                                     "Alat dan Bahan",
+//                                     style: TextStyle(
+//                                         fontSize: 20,
+//                                         fontWeight: FontWeight.w500),
+//                                   ),
+//                                 ),
+//                                 Container(
+//                                     padding: const EdgeInsets.only(
+//                                         bottom: 16.0, top: 10),
+//                                     child: ListView.builder(
+//                                         itemCount:
+//                                             widget.masakan.ingredients.length,
+//                                         shrinkWrap: true,
+//                                         physics:
+//                                             const NeverScrollableScrollPhysics(),
+//                                         itemBuilder: (context, index) {
+//                                           int count = index + 1;
+//                                           return Text(
+//                                             "$count. ${widget.masakan.ingredients[index]}",
+//                                             style:
+//                                                 const TextStyle(fontSize: 15),
+//                                           );
+//                                         })),
+//                                 const Align(
+//                                   alignment: Alignment.topLeft,
+//                                   child: Text(
+//                                     "Tahap Pembuatan",
+//                                     style: TextStyle(
+//                                         fontSize: 20,
+//                                         fontWeight: FontWeight.w500),
+//                                   ),
+//                                 ),
+//                                 Container(
+//                                     padding: const EdgeInsets.only(
+//                                         bottom: 16.0, top: 10),
+//                                     child: ListView.builder(
+//                                         itemCount: widget.masakan.step.length,
+//                                         shrinkWrap: true,
+//                                         physics:
+//                                             const NeverScrollableScrollPhysics(),
+//                                         itemBuilder: (context, index) {
+//                                           int count = index + 1;
+//                                           return Text(
+//                                             "$count. ${widget.masakan.step[index]}",
+//                                             style:
+//                                                 const TextStyle(fontSize: 15),
+//                                           );
+//                                         })),
+//                               ],
+//                             ),
+//                           ),
+//                         ),
+//                       ),
+//                     ],
+//                   ),
+//                 ],
+//               ),
+//             ),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+
+//   @override
+//   void dispose() {
+//     _scrollController.dispose();
+//     super.dispose();
+//   }
+// }
 
 class FavoriteButton extends StatefulWidget {
   final Masakan masakan;
